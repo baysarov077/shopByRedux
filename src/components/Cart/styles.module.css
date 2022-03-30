@@ -19,3 +19,57 @@
   text-align: center;
   border-radius: 12px;
 }
+
+.cartWindow {
+  width: 470px;
+  border: 1px solid;
+  background-color: #fff;
+  position: absolute;
+  top: 45px;
+  left: 884px;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 1px 1px 6px -1px grey;
+  padding: 0 20px 0 0;
+}
+
+.tr {
+  width: 380px;
+  margin: auto;
+
+}
+
+.closed {
+  opacity: 0.5;
+  margin-left: 350px;
+  cursor: pointer;
+}
+
+.td button {
+  width: 30px;
+  height: 30px;
+  line-height: 12px;
+  background-color: #fff;
+  border: 1px solid aqua;
+  font-size: 26px;
+  color: aqua;
+  border-radius: 5px;
+}
+
+.td {
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tr th {
+  padding-left: 20px;
+}
+
+.tr td {
+  padding-left: 20px;
+}
+
+.del {
+  cursor: pointer;
+}

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialState = {
   products: [
     {
@@ -102,8 +104,75 @@ const initialState = {
   ],
 };
 
+
+
 export const shopReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'add':
+      return {
+        ...state,
+        cartItems: [
+          ...state.cartItems,
+          {
+            id: state.cartItems.length + 1,
+            productId: action.payload,
+            amount: 1
+          }
+        ]
+      }
+    case 'increment':
+      return {
+        ...state,
+        cartItems: [
+          ...state.cartItems.map(item => {
+            if (action.payload.id === item.id) {
+              item.amount += 1
+
+              return item
+            }
+            return item
+          })
+        ],
+        products: [
+          ...state.products.map(item => {
+            if(action.payload.productId === item.id) {
+              item.left -= 1
+              return item
+            }
+            return item
+          })
+        ]
+      }
+      case 'decrement': 
+      return {
+        ...state,
+        cartItems: [
+          ...state.cartItems.map(item => {
+            if (action.payload.id === item.id) {
+              item.amount -= 1
+
+              return item
+            }
+            return item
+          })
+        ],
+        products: [
+          ...state.products.map(item => {
+            if(action.payload.productId === item.id) {
+              item.left += 1
+              return item
+            }
+            return item
+          })
+        ]
+      }
+      case 'delete':
+        return {
+          ...state,
+          cartItems: [
+            ...state.cartItems.filter(item => action.payload.id !== item.id)
+          ]
+        }
     default:
       return state;
   }
@@ -114,7 +183,7 @@ export const shopReducer = (state = initialState, action) => {
 const logger = (reducer) => (state, action) => {
   console.log(`action: ${JSON.stringify(action)}`, state);
 
-  return reducer(state, action);
+  return reducer(state = initialState, action);
 };
 
 export default logger(shopReducer);
